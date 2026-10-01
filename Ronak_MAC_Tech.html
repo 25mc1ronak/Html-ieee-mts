@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IEEE MTT-S | MITS-DU Gwalior</title>
+<meta name="description" content="IEEE Microwave Theory and Techniques Society Student Chapter at Madhav Institute of Technology and Science, Gwalior." />
+<style>
+  /* ============ RESET & BASE ============ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ieee-blue: #00629B;
+    --ieee-dark: #003A5D;
+    --accent:    #00B5E2;
+    --gold:      #FFC72C;
+    --ink:       #12222e;
+    --muted:     #5b6b78;
+    --bg:        #f5f8fb;
+    --card:      #ffffff;
+    --radius:    14px;
+    --shadow:    0 6px 24px rgba(0, 58, 93, 0.10);
+  }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+
+  body {
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { width: min(1140px, 92%); margin-inline: auto; }
+
+  /* ============ HEADER / NAV ============ */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e2eaf1;
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; padding: 12px 0;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+  .brand .logo {
+    width: 42px; height: 42px; flex: 0 0 42px;
+    display: grid; place-items: center;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--ieee-blue), var(--accent));
+    color: #fff; font-weight: 800; font-size: 0.78rem; letter-spacing: .5px;
+  }
+  .brand h1 { font-size: 1rem; line-height: 1.2; font-weight: 700; }
+  .brand span { display: block; font-size: .72rem; color: var(--muted); font-weight: 500; }
+
+  .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; flex-wrap: wrap; }
+  .nav-links a {
+    text-decoration: none; color: var(--ink); font-size: .88rem; font-weight: 600;
+    padding: 8px 12px; border-radius: 8px; transition: background .2s, color .2s;
+  }
+  .nav-links a:hover { background: #e8f2f9; color: var(--ieee-blue); }
+
+  .btn {
+    display: inline-block; border: none; cursor: pointer;
+    font-family: inherit; font-size: .9rem; font-weight: 700;
+    padding: 11px 22px; border-radius: 999px;
+    text-decoration: none; text-align: center;
+    transition: transform .18s ease, box-shadow .18s ease, background .18s;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--ieee-blue), var(--accent));
+    color: #fff; box-shadow: 0 6px 18px rgba(0,98,155,.30);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,98,155,.38); }
+  .btn-ghost {
+    background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.75);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,.15); transform: translateY(-2px); }
+  .btn-outline {
+    background: #fff; color: var(--ieee-blue); border: 2px solid var(--ieee-blue);
+  }
+  .btn-outline:hover { background: var(--ieee-blue); color: #fff; transform: translateY(-2px); }
+
+  /* ============ HERO ============ */
+  .hero {
+    position: relative; overflow: hidden;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(0,181,226,.38), transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(255,199,44,.20), transparent 45%),
+      linear-gradient(135deg, var(--ieee-dark), var(--ieee-blue) 65%, #017a9e);
+    color: #fff;
+    padding: 92px 0 100px;
+    text-align: center;
+  }
+  .hero::after {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size: 46px 46px;
+    mask-image: radial-gradient(circle at 50% 45%, #000, transparent 78%);
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; z-index: 2; }
+  .pill {
+    display: inline-block; font-size: .76rem; font-weight: 700; letter-spacing: 1.4px;
+    text-transform: uppercase; padding: 7px 18px; border-radius: 999px;
+    background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.30);
+    margin-bottom: 22px;
+  }
+  .hero h2 {
+    font-size: clamp(1.9rem, 5vw, 3.15rem);
+    line-height: 1.16; font-weight: 800; letter-spacing: -.5px;
+    max-width: 900px; margin: 0 auto 18px;
+  }
+  .hero h2 em { font-style: normal; color: var(--gold); }
+  .hero p {
+    max-width: 700px; margin: 0 auto 34px;
+    font-size: clamp(.95rem, 2vw, 1.08rem); color: #d8ecf7;
+  }
+  .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  /* ============ SECTION SHELL ============ */
+  section { padding: 78px 0; }
+  section:nth-of-type(even) { background: #fff; }
+
+  .sec-head { text-align: center; max-width: 720px; margin: 0 auto 48px; }
+  .sec-head .kicker {
+    font-size: .75rem; font-weight: 800; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--accent);
+  }
+  .sec-head h3 {
+    font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+    font-weight: 800; margin: 8px 0 12px; letter-spacing: -.4px;
+  }
+  .sec-head p { color: var(--muted); font-size: .97rem; }
+
+  /* ============ CARDS & GRIDS ============ */
+  .grid { display: grid; gap: 22px; }
+  .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .grid-3 { grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); }
+
+  .card {
+    background: var(--card); border: 1px solid #e3ecf3;
+    border-radius: var(--radius); padding: 26px 24px;
+    box-shadow: var(--shadow);
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s;
+  }
+  .card:hover { transform: translateY(-5px); box-shadow: 0 14px 34px rgba(0,58,93,.15); border-color: #c6dfee; }
+
+  .card .icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: grid; place-items: center; font-size: 1.4rem;
+    background: linear-gradient(135deg, #e6f4fb, #d2ecf9);
+    margin-bottom: 16px;
+  }
+  .card h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+  .card p { font-size: .92rem; color: var(--muted); }
+
+  /* About — highlight stat strip */
+  .stats {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px; margin-top: 34px;
+  }
+  .stat {
+    background: linear-gradient(135deg, var(--ieee-blue), var(--ieee-dark));
+    color: #fff; border-radius: 12px; padding: 20px 14px; text-align: center;
+  }
+  .stat b { display: block; font-size: 1.7rem; line-height: 1.1; color: var(--gold); }
+  .stat small { font-size: .78rem; letter-spacing: .6px; text-transform: uppercase; opacity: .9; }
+
+  /* ============ EVENT CARD ============ */
+  .event {
+    background: linear-gradient(135deg, #ffffff, #f0f8fd);
+    border: 1px solid #cfe6f4;
+    border-left: 6px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 30px; box-shadow: var(--shadow);
+    display: grid; grid-template-columns: auto 1fr; gap: 26px; align-items: start;
+  }
+  .event-date {
+    background: linear-gradient(135deg, var(--ieee-blue), var(--accent));
+    color: #fff; border-radius: 12px; padding: 16px 20px; text-align: center; min-width: 108px;
+  }
+  .event-date b { display: block; font-size: 1.85rem; line-height: 1; }
+  .event-date small { font-size: .74rem; letter-spacing: 1.4px; text-transform: uppercase; }
+  .event h4 { font-size: 1.28rem; font-weight: 800; margin-bottom: 8px; }
+  .event p { color: var(--muted); font-size: .94rem; margin-bottom: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+  .tag {
+    font-size: .74rem; font-weight: 700; padding: 5px 12px; border-radius: 999px;
+    background: #e6f4fb; color: var(--ieee-blue); border: 1px solid #cbe6f5;
+  }
+
+  /* ============ FORM ============ */
+  .form-wrap {
+    background: #fff; border: 1px solid #e3ecf3; border-radius: var(--radius);
+    padding: 34px; box-shadow: var(--shadow);
+  }
+  .field { margin-bottom: 16px; }
+  .field label {
+    display: block; font-size: .82rem; font-weight: 700;
+    margin-bottom: 6px; color: #2b3d4a;
+  }
+  .field input, .field select, .field textarea {
+    width: 100%; font-family: inherit; font-size: .92rem;
+    padding: 11px 14px; border: 1.6px solid #d5e3ed; border-radius: 10px;
+    background: #fbfdff; color: var(--ink);
+    transition: border-color .18s, box-shadow .18s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(0,181,226,.15);
+  }
+  .field textarea { resize: vertical; min-height: 92px; }
+  .form-note { font-size: .8rem; color: var(--muted); margin-top: 12px; }
+
+  .success {
+    display: none; margin-top: 18px; padding: 14px 18px;
+    border-radius: 10px; font-size: .9rem; font-weight: 600;
+    background: #e6f8ef; color: #0d6b41; border: 1px solid #b6e6cd;
+  }
+  .success.show { display: block; animation: pop .35s ease; }
+  @keyframes pop { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
+  .contact-list { list-style: none; display: grid; gap: 16px; }
+  .contact-list li { display: flex; gap: 14px; align-items: flex-start; }
+  .contact-list .ci {
+    width: 40px; height: 40px; flex: 0 0 40px; border-radius: 10px;
+    display: grid; place-items: center; font-size: 1.05rem;
+    background: #e6f4fb; color: var(--ieee-blue);
+  }
+  .contact-list strong { display: block; font-size: .92rem; }
+  .contact-list a, .contact-list span { font-size: .88rem; color: var(--muted); text-decoration: none; }
+  .contact-list a:hover { color: var(--ieee-blue); text-decoration: underline; }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--ieee-dark); color: #c7dbe8;
+    padding: 40px 0 26px; text-align: center; font-size: .87rem;
+  }
+  footer .flinks { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin: 14px 0 18px; }
+  footer .flinks a { color: #9fc6dd; text-decoration: none; font-weight: 600; }
+  footer .flinks a:hover { color: #fff; }
+  footer hr { border: none; border-top: 1px solid rgba(255,255,255,.14); margin: 18px 0; }
+
+  /* ============ BACK TO TOP ============ */
+  #toTop {
+    position: fixed; right: 20px; bottom: 20px; z-index: 200;
+    width: 46px; height: 46px; border-radius: 50%; border: none; cursor: pointer;
+    background: var(--ieee-blue); color: #fff; font-size: 1.1rem;
+    box-shadow: 0 8px 20px rgba(0,58,93,.35);
+    opacity: 0; visibility: hidden; transition: opacity .25s, visibility .25s, transform .2s;
+  }
+  #toTop.show { opacity: 1; visibility: visible; }
+  #toTop:hover { transform: translateY(-3px); }
+
+  /* ============ REVEAL ANIMATION ============ */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 780px) {
+    .nav { flex-direction: column; align-items: flex-start; }
+    .nav-links { width: 100%; justify-content: flex-start; }
+    .nav-links a { padding: 6px 9px; font-size: .82rem; }
+    .event { grid-template-columns: 1fr; gap: 18px; }
+    .event-date { justify-self: start; }
+    section { padding: 56px 0; }
+    .hero { padding: 64px 0 72px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="container nav">
+    <a href="#top" class="brand">
+      <div class="logo">MTT-S</div>
+      <div>
+        <h1>IEEE MTT-S</h1>
+        <span>MITS-DU Gwalior Student Chapter</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about-mtts">About MTT-S</a></li>
+      <li><a href="#chapter">Our Chapter</a></li>
+      <li><a href="#event">Upcoming Event</a></li>
+      <li><a href="#domains">Domains</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#register" class="btn btn-primary" style="padding:8px 18px;">Register</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<div id="top"></div>
+<section class="hero">
+  <div class="container hero-inner">
+    <span class="pill">IEEE Microwave Theory &amp; Techniques Society</span>
+    <h2>Shaping the Future of <em>Microwaves, RF</em> &amp; Wireless Technology</h2>
+    <p>
+      The official IEEE MTT-S Student Chapter at Madhav Institute of Technology and Science,
+      Deemed University, Gwalior — connecting students to the global RF, microwave and
+      photonics community through workshops, projects and industry interaction.
+    </p>
+    <div class="hero-actions">
+      <a href="#register" class="btn btn-primary">Register for the Workshop</a>
+      <a href="#about-mtts" class="btn btn-ghost">Explore the Chapter</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= IEEE MTT-S INTRO ================= -->
+<section id="about-mtts">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="kicker">Introduction</div>
+      <h3>What is IEEE MTT-S?</h3>
+      <p>A quick look at the society that powers innovation in microwave and RF engineering worldwide.</p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card reveal">
+        <div class="icon">📡</div>
+        <h4>A Global Society</h4>
+        <p>
+          The <strong>IEEE Microwave Theory and Techniques Society (MTT-S)</strong> is one of the
+          largest and most active societies within IEEE. It brings together engineers, researchers
+          and students working on microwave, millimetre-wave, RF, antenna and photonic technologies.
+        </p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">🔬</div>
+        <h4>Fields of Focus</h4>
+        <p>
+          MTT-S covers the theory, design and application of microwave components, circuits and
+          systems — from 5G/6G communication and radar to satellite links, biomedical sensing and
+          electromagnetic compatibility.
+        </p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">📚</div>
+        <h4>Knowledge &amp; Publications</h4>
+        <p>
+          Members gain access to highly cited journals such as <em>IEEE Transactions on MTT</em>,
+          the <em>IEEE Microwave and Wireless Technology Letters</em>, and the flagship
+          <em>IEEE MTT-S International Microwave Symposium (IMS)</em>.
+        </p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">🤝</div>
+        <h4>Why Join?</h4>
+        <p>
+          Access to technical talks, distinguished lecturers, student design competitions,
+          travel grants, networking with industry leaders, and hands-on exposure to
+          RF/microwave design tools and hardware.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT THE CHAPTER ================= -->
+<section id="chapter">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="kicker">About Us</div>
+      <h3>The MITS-DU Gwalior Chapter</h3>
+      <p>
+        A student-led technical community under the IEEE Student Branch of MITS-DU Gwalior,
+        dedicated to building practical RF and microwave engineering skills beyond the classroom.
+      </p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card reveal">
+        <div class="icon">🎯</div>
+        <h4>Our Mission</h4>
+        <p>
+          To create a strong platform for students of MITS-DU Gwalior to learn, build and innovate
+          in microwave, RF, antenna and wireless domains — bridging the gap between academic
+          curriculum and industry expectations.
+        </p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">🚀</div>
+        <h4>What We Do</h4>
+        <p>
+          We organise hands-on workshops, expert talks, simulation bootcamps, project showcases
+          and industry visits. Members work with tools such as HFSS, CST, ADS, MATLAB and KiCad,
+          and participate in IEEE-level competitions.
+        </p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">👥</div>
+        <h4>Who Can Join</h4>
+        <p>
+          Open to all undergraduate and postgraduate students of MITS-DU Gwalior with an interest
+          in Electronics, Communication, Electrical, Computer or allied engineering streams.
+          No prior RF experience required.
+        </p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">🌟</div>
+        <h4>Our Vision</h4>
+        <p>
+          To establish MITS-DU Gwalior as a recognised student hub for microwave and RF research
+          in the central India region, producing industry-ready engineers and future researchers.
+        </p>
+      </div>
+    </div>
+
+    <div class="stats reveal">
+      <div class="stat"><b>150+</b><small>Active Members</small></div>
+      <div class="stat"><b>20+</b><small>Events Conducted</small></div>
+      <div class="stat"><b>12+</b><small>Expert Speakers</small></div>
+      <div class="stat"><b>5+</b><small>Student Projects</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= UPCOMING EVENT ================= -->
+<section id="event">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="kicker">Upcoming</div>
+      <h3>Event &amp; Workshop</h3>
+      <p>Hands-on sessions designed to give you real, usable RF and microwave skills.</p>
+    </div>
+
+    <div class="event reveal">
+      <div class="event-date">
+        <b>15</b>
+        <small>Nov 2025</small>
+      </div>
+      <div>
+        <h4>Hands-On Workshop: Antenna Design &amp; RF Simulation</h4>
+        <p>
+          A two-day intensive workshop covering the fundamentals of antenna theory, patch antenna
+          design, S-parameter analysis and RF circuit simulation. Participants will design,
+          simulate and optimise a microstrip patch antenna and take away a complete design report.
+        </p>
+        <div class="tags">
+          <span class="tag">Antenna Design</span>
+          <span class="tag">HFSS / CST</span>
+          <span class="tag">S-Parameters</span>
+          <span class="tag">Beginner Friendly</span>
+          <span class="tag">Certificate Provided</span>
+        </div>
+        <a href="#register" class="btn btn-outline">Register Now →</a>
+      </div>
+    </div>
+
+    <div class="grid grid-3" style="margin-top:26px;">
+      <div class="card reveal">
+        <div class="icon">🗓️</div>
+        <h4>Expert Talk Series</h4>
+        <p>Monthly online/in-person talks by IEEE Distinguished Lecturers and industry RF engineers.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">🛠️</div>
+        <h4>Project Bootcamp</h4>
+        <p>Team-based mini-projects on filters, amplifiers and wireless links with mentor guidance.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">🏆</div>
+        <h4>Student Design Contest</h4>
+        <p>Internal qualifying rounds for IEEE MTT-S Student Design Competitions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DOMAINS / ACTIVITIES ================= -->
+<section id="domains">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="kicker">What We Cover</div>
+      <h3>Domains &amp; Activities</h3>
+      <p>The technical areas our chapter actively explores and works in.</p>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="card reveal">
+        <div class="icon">📶</div>
+        <h4>RF &amp; Microwave Circuits</h4>
+        <p>Amplifiers, filters, mixers, oscillators and impedance matching networks.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">🛰️</div>
+        <h4>Antennas &amp; Propagation</h4>
+        <p>Patch, horn, array and MIMO antennas, plus wireless channel modelling.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">📱</div>
+        <h4>5G / 6G &amp; Wireless</h4>
+        <p>Millimetre-wave communication, beamforming and next-gen network architecture.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">🧪</div>
+        <h4>Simulation &amp; Modelling</h4>
+        <p>HFSS, CST Studio, ADS, MATLAB and Python-based electromagnetic analysis.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">🩺</div>
+        <h4>Biomedical Microwaves</h4>
+        <p>Microwave imaging, hyperthermia and wearable RF sensors for healthcare.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">🔌</div>
+        <h4>Hardware &amp; Fabrication</h4>
+        <p>PCB design, VNA measurements, soldering and practical lab prototyping.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">🎤</div>
+        <h4>Technical Talks &amp; Seminars</h4>
+        <p>Guest lectures, journal clubs and research paper presentation sessions.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">🌐</div>
+        <h4>Industry Interaction</h4>
+        <p>Industrial visits, internships guidance and career sessions with RF companies.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">📝</div>
+        <h4>Research &amp; Publications</h4>
+        <p>Support for student papers, conference submissions and IEEE paper writing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT / REGISTRATION ================= -->
+<section id="contact">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="kicker">Get Involved</div>
+      <h3>Contact &amp; Registration</h3>
+      <p>Fill in the form to register for the upcoming workshop or to join the chapter.</p>
+    </div>
+
+    <div class="grid grid-2" style="align-items:start;">
+
+      <!-- Contact info -->
+      <div class="reveal">
+        <h4 style="font-size:1.1rem;margin-bottom:18px;">Reach Out to Us</h4>
+        <ul class="contact-list">
+          <li>
+            <div class="ci">📍</div>
+            <div>
+              <strong>Address</strong>
+              <span>IEEE Student Branch, Madhav Institute of Technology &amp; Science (MITS-DU),<br>
+              Race Course Road, Gwalior, Madhya Pradesh – 474005, India</span>
+            </div>
+          </li>
+          <li>
+            <div class="ci">✉️</div>
+            <div>
+              <strong>Email</strong>
+              <a href="mailto:mtts.mitsdu@gmail.com">mtts.mitsdu@gmail.com</a>
+            </div>
+          </li>
+          <li>
+            <div class="ci">📞</div>
+            <div>
+              <strong>Phone</strong>
+              <a href="tel:+919000000000">+91 90000 00000</a>
+            </div>
+          </li>
+          <li>
+            <div class="ci">🔗</div>
+            <div>
+              <strong>Follow Us</strong>
+              <a href="https://www.ieee.org" target="_blank" rel="noopener">ieee.org</a> ·
+              <a href="https://mtt.org" target="_blank" rel="noopener">mtt.org</a>
+            </div>
+          </li>
+        </ul>
+
+        <div style="margin-top:26px;">
+          <a href="mailto:mtts.mitsdu@gmail.com?subject=IEEE%20MTT-S%20MITS-DU%20Enquiry"
+             class="btn btn-outline">Send Us an Email</a>
+        </div>
+      </div>
+
+      <!-- Registration form -->
+      <div class="form-wrap reveal" id="register">
+        <h4 style="font-size:1.1rem;margin-bottom:18px;">Registration Form</h4>
+        <form id="regForm" novalidate>
+          <div class="field">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" placeholder="e.g. Aarav Sharma" required />
+          </div>
+          <div class="field">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          </div>
+          <div class="field">
+            <label for="enroll">Enrollment Number</label>
+            <input type="text" id="enroll" name="enroll" placeholder="e.g. 0901CS221001" />
+          </div>
+          <div class="field">
+            <label for="interest">I want to *</label>
+            <select id="interest" name="interest" required>
+              <option value="">-- Select an option --</option>
+              <option>Register for the Antenna Design Workshop</option>
+              <option>Join the IEEE MTT-S Student Chapter</option>
+              <option>Volunteer with the Chapter Team</option>
+              <option>Attend the Expert Talk Series</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="msg">Message (optional)</label>
+            <textarea id="msg" name="msg" placeholder="Any questions or comments?"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Submit Registration</button>
+          <p class="form-note">* Required fields. Your details are used only for chapter communication.</p>
+          <div class="success" id="successMsg"></div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <strong style="color:#fff;font-size:1rem;">IEEE MTT-S Student Chapter · MITS-DU Gwalior</strong>
+    <div class="flinks">
+      <a href="#about-mtts">About MTT-S</a>
+      <a href="#chapter">Our Chapter</a>
+      <a href="#event">Events</a>
+      <a href="#domains">Domains</a>
+      <a href="#register">Register</a>
+      <a href="https://mtt.org" target="_blank" rel="noopener">mtt.org</a>
+    </div>
+    <hr />
+    <p>© <span id="year"></span> IEEE MTT-S MITS-DU Gwalior Student Chapter. All rights reserved.</p>
+    <p style="margin-top:6px;font-size:.8rem;opacity:.75;">
+      IEEE and the IEEE MTT-S logo are trademarks of the Institute of Electrical and Electronics Engineers.
+    </p>
+  </div>
+</footer>
+
+<!-- ================= BACK TO TOP ================= -->
+<button id="toTop" aria-label="Back to top" title="Back to top">↑</button>
+
+<script>
+  /* ---------- Current year ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- Back to top button ---------- */
+  const toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', () => {
+    toTop.classList.toggle('show', window.scrollY > 420);
+  });
+  toTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ---------- Registration form handling ---------- */
+  const form = document.getElementById('regForm');
+  const successMsg = document.getElementById('successMsg');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const interest = form.interest.value;
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    if (!name) {
+      alert('Please enter your full name.');
+      form.name.focus();
+      return;
+    }
+    if (!emailOk) {
+      alert('Please enter a valid email address.');
+      form.email.focus();
+      return;
+    }
+    if (!interest) {
+      alert('Please select what you want to do.');
+      form.interest.focus();
+      return;
+    }
+
+    successMsg.textContent =
+      `✅ Thank you, ${name}! Your registration for "${interest}" has been received. ` +
+      `A confirmation will be sent to ${email}.`;
+    successMsg.classList.add('show');
+    form.reset();
+
+    setTimeout(() => successMsg.classList.remove('show'), 9000);
+  });
+
+  /* ---------- Scroll reveal animation ---------- */
+  const revealEls = document.querySelectorAll('.reveal');
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach((el) => io.observe(el));
+  } else {
+    revealEls.forEach((el) => el.classList.add('visible'));
+  }
+</script>
+</body>
+</html>
